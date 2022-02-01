@@ -5,7 +5,7 @@ class Solution:
         distance = 0
         i, j = 0, len(height) -1
         
-        while i < j:
+        while i <= j:
             distance = j-i
             mini = min(height[i], height[j])
             ans = distance * mini
