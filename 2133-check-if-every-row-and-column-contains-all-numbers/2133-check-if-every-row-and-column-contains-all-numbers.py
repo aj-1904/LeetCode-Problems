@@ -5,7 +5,6 @@ class Solution:
         if n == 1:
             return True
     
-        row_set = set()
         for i in range(n):
             row_set = set()
             col_set = set()
