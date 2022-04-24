@@ -1,6 +1,8 @@
 import heapq
 class Solution:
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        ''' using max-heap
+        TC- O(nlogk)'''
         max_heap = []
         heapq.heapify(max_heap)
         
