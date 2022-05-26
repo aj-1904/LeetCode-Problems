@@ -1,31 +1,30 @@
 class Solution:
-    # Bipartite Graph using BFS
-    def bipartiteBFS(self, src, adj, color):
-        queue = []
-        # add src node to queue
-        queue.append(src)
-        # initially color src node with either 0 or 1
-        color[src] = 1
+    # Bipartite Graph using DFS
+    def bipartiteDFS(self, node, adj, color):
+        # if node not coloured then color with either 0 or 1
+        if color[node] == -1:
+            color[node] = 1
         
-        while queue:
-            node = queue.pop(0)
-            # traverse for adjacent node
-            for adjacent_nodes in adj[node]:
-                if color[adjacent_nodes] == -1:
-                    # set up opposite color of adjacent node
-                    color[adjacent_nodes] = 1 - color[node]
-                    queue.append(adjacent_nodes)
-                    # if the adjacent_node is already visited and has same color as of node, ret False
-                elif color[adjacent_nodes] == color[node]:
+        # traverse for adjacent node
+        for adjacent_nodes in adj[node]:
+            if color[adjacent_nodes] == -1:
+                # set up opposite color of adjacent node if not coloured
+                color[adjacent_nodes] = 1 - color[node]
+                # if any of the adjacent node returns False then it is not a bipartite graph
+                if not self.bipartiteDFS(adjacent_nodes, adj, color):
                     return False
+                # if the adjacent_node is already visited and has same color as of node, ret False
+            elif color[adjacent_nodes] == color[node]:
+                return False
         return True
+        
 	def isBipartite(self, V, adj):
 		#code here
         # color array of V size		
 		color = [-1] * V
 		for i in range(V):
 		    if color[i] == -1:
-		        if not self.bipartiteBFS(i, adj, color):
+		        if not self.bipartiteDFS(i, adj, color):
 		            return False
 		return True
 		
