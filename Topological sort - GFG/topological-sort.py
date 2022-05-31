@@ -2,6 +2,7 @@ class Solution:
     
     #Function to return list containing vertices in Topological order.
     def findTopoSort(self, node, vis, stack, adj):
+        # using DFS
         vis[node] = 1
         
         for neighbour in adj[node]:
