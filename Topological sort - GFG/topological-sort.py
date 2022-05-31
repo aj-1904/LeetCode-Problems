@@ -1,28 +1,52 @@
 class Solution:
     
     #Function to return list containing vertices in Topological order.
-    def findTopoSort(self, node, vis, stack, adj):
-        # using DFS
-        vis[node] = 1
+    # def findTopoSort(self, node, vis, stack, adj):
+    #     # using DFS
+    #     vis[node] = 1
         
-        for neighbour in adj[node]:
-            if not vis[neighbour]:
-                self.findTopoSort(neighbour, vis, stack, adj)
-        stack.append(node)
+    #     for neighbour in adj[node]:
+    #         if not vis[neighbour]:
+    #             self.findTopoSort(neighbour, vis, stack, adj)
+    #     stack.append(node)
         
     
+    # def topoSort(self, V, adj):
+    #     # Code here
+    #     stack = []
+    #     vis = [0] * N
+        
+    #     for i in range(N):
+    #         if not vis[i]:
+    #             self.findTopoSort(i, vis, stack, adj)
+        
+    #     topo = []
+    #     while stack:
+    #         topo.append(stack.pop())
+    #     return topo
     def topoSort(self, V, adj):
-        # Code here
-        stack = []
-        vis = [0] * N
+        # using BFS(Kahn's Algorithm)
         
-        for i in range(N):
-            if not vis[i]:
-                self.findTopoSort(i, vis, stack, adj)
+        queue = []
+        indegree = [0] * V
         
+        for i in range(V):
+            for neighbour in adj[i]:
+                indegree[neighbour] += 1
+        
+        for i in range(V):
+            if indegree[i] == 0:
+                queue.append(i)
+                
         topo = []
-        while stack:
-            topo.append(stack.pop())
+        while queue:
+            node = queue.pop(0)
+            topo.append(node)
+            for neighbour in adj[node]:
+                indegree[neighbour] -= 1
+                if indegree[neighbour] == 0:
+                    queue.append(neighbour)
+                    
         return topo
 
 
