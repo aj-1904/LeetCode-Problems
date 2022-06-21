@@ -1,6 +1,7 @@
 class Solution:
     def furthestBuilding(self, heights: List[int], bricks: int, ladders: int) -> int:
-        
+        ''' TC-O(nlogL)
+            SC - O(L) '''
         n = len(heights)
         diff = 0
         heap = []
