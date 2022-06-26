@@ -17,6 +17,7 @@ class Solution:
             
             # if j-i+1 < k:
             #     j += 1
+            # sliding window approach to get subarray of minimum sum of length (size-k)
             if j-i+1 == n-k:
                 minSum = min(minSum, currSum)
                # move the window
