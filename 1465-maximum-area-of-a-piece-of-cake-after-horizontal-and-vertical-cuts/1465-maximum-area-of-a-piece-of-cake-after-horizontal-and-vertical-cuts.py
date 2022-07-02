@@ -1,6 +1,10 @@
 class Solution:
     def maxArea(self, h: int, w: int, horizontalCuts: List[int], verticalCuts: List[int]) -> int:
         '''TC - O(nlogn)'''
+        '''
+       1.  max area = max length * max height
+       2. The input arrays of cuts can be randomly ordered, but sorting them wouldn't actually   change how the 'cake' is cut
+       3. hence, we can sort both arrays, and find the max diff between adjacent elements'''
         mod = 10**9+7
         horizontalCuts.sort()
         verticalCuts.sort()
